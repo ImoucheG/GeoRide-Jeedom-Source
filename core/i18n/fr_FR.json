@@ -1,0 +1,56 @@
+{
+    "plugins\/georide\/plugin_info\/configuration.php": {
+        "Authentification API Key": "Authentification API Key",
+        "Après la sauvegarde, merci de rafraichir entièrement votre page à l'aide d'un F5": "Après la sauvegarde, merci de rafraichir entièrement votre page à l'aide d'un F5",
+        "Mes équipements de géolocalisation": "Mes équipements de géolocalisation",
+        "Récupérer l'API Key": "Récupérer l'API Key",
+        "Nom de l'équipement": "Nom de l'équipement",
+        "Les données saisies ne sont pas sauvegardées et sont utilisées que pour récupérer l'API Key": "Les données saisies ne sont pas sauvegardées et sont utilisées que pour récupérer l'API Key",
+        "Email": "Email",
+        "Mot de passe": "Mot de passe",
+        "Récupérer": "Récupérer"
+    },
+    "plugins\/georide\/desktop\/php\/georide.php": {
+        "Gestion": "Gestion",
+        "Ajouter un boitier": "Ajouter un boitier",
+        "Configuration": "Configuration",
+        "Mes boitiers": "Mes boitiers",
+        "Rechercher": "Rechercher",
+        "Configuration avancée": "Configuration avancée",
+        "Dupliquer": "Dupliquer",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Equipement": "Equipement",
+        "Commandes": "Commandes",
+        "Nom du boitier": "Nom du boitier",
+        "Objet parent": "Objet parent",
+        "Aucun": "Aucun",
+        "Catégorie": "Catégorie",
+        "Activer": "Activer",
+        "Boitier (Tracker ID)": "Boitier (Tracker ID)",
+        "Tacker ID": "Tacker ID",
+        "Liste vide": "Liste vide",
+        "Actualiser la liste des boitiers": "Actualiser la liste des boitiers",
+        "GeoLoc URL": "GeoLoc URL",
+        "GeoLoc est un plug-in Jeedom (<a href='https:/\/jeedom.github.io/plugin-geoloc/fr_FR/'>https:/\/jeedom.github.io/plugin-geoloc/fr_FR/</a>). Si vous souhaitez mettre à jour vos coordonnées Jeedom, merci de remplir le champ suivant sinon vous pouvez le laisser vide pour désactiver la fonction.": "GeoLoc est un plug-in Jeedom (<a href='https:/\/jeedom.github.io/plugin-geoloc/fr_FR/'>https:/\/jeedom.github.io/plugin-geoloc/fr_FR/</a>). Si vous souhaitez mettre à jour vos coordonnées Jeedom, merci de remplir le champ suivant sinon vous pouvez le laisser vide pour désactiver la fonction.",
+        "Example: https:/\/myUrlJeedom.com/plugins/geoloc/core/api/jeeGeoloc.php?apikey=myAPiKey&id=myIdCmd&value=%LOCN Pour plus d'information veuillez consulter la documentation de GeoLoc, l'url peut être retrouver au sein de l'onglet \"Commandes\" de votre équipement GeoLoc, <font style=\"font-style: italic; font-weight: bold;color: red\">!IMPORTANT! merci de ne pas changer %LOCN au sein de l'URL, il sera complété dynamiquement.</font>": "Example: https:/\/myUrlJeedom.com/plugins/geoloc/core/api/jeeGeoloc.php?apikey=myAPiKey&id=myIdCmd&value=%LOCN Pour plus d'information veuillez consulter la documentation de GeoLoc, l'url peut être retrouver au sein de l'onglet \"Commandes\" de votre équipement GeoLoc, <font style=\"font-style: italic; font-weight: bold;color: red\">!IMPORTANT! merci de ne pas changer %LOCN au sein de l'URL, il sera complété dynamiquement.</font>",
+        "Commandes": "Commandes",
+        "Nom": "Nom",
+        "Type": "Type",
+        "Action": "Action",
+        "Visible": "Visible"
+    },
+    "plugins\/georide\/desktop\/js\/georide.js": {
+        "Nom": "Nom",
+        "Historiser": "Historiser",
+        "Affichage": "Affichage",
+        "Tester": "Tester",
+        "Historiser": "Historiser",
+        "Afficher": "Afficher",
+        "Tester": "Tester",
+        "Erreur lors de la récupération des trackers, veuillez vérifier votre clée API ou le status de api.georide.fr.": "Erreur lors de la récupération des trackers, veuillez vérifier votre clée API ou le status de api.georide.fr."
+    },
+    "plugins\/georide\/plugin_info\/info.json": {
+        "Plugin afin d'utiliser l'api ouvert de GeoRide": "Plugin afin d'utiliser l'api ouvert de GeoRide"
+    }
+}
