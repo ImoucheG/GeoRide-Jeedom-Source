@@ -10,10 +10,10 @@
   "hasDependency": false,
   "hasOwnDeamon": false,
   "maxDependancyInstallTime": 0,
-  "changelog": "https://github.com/ImoucheG/GeoRide-Jeedom",
-    "documentation": "https://github.com/ImoucheG/GeoRide-Jeedom",
+  "changelog": "https://github.com/ImoucheG/GeoRide-Jeedom-Source",
+    "documentation": "https://github.com/ImoucheG/GeoRide-Jeedom-Source",
   "link": {
-    "GeoRide-Jeedom": "https://github.com/ImoucheG/GeoRide-Jeedom",
+    "GeoRide-Jeedom": "https://github.com/ImoucheG/GeoRide-Jeedom-Source",
     "GeoRide": "https://georide.fr/"
   },
   "language": [
