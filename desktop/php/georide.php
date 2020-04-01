@@ -126,7 +126,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                        placeholder="https://myUrlJeedom.com/plugins/geoloc/core/api/jeeGeoloc.php?apikey=myAPiKey&id=myIdCmd&value=%LOCN"/>
                                 <span class="col-lg-12" style="font-style: italic;">{{Example: https://myUrlJeedom.com/plugins/geoloc/core/api/jeeGeoloc.php?apikey=myAPiKey&id=myIdCmd&value=%LOCN Pour plus d'information veuillez consulter
             la documentation de GeoLoc, l'url peut être retrouver au sein de l'onglet "Commandes" de votre équipement GeoLoc, <font
-                                            style="font-style: italic; font-weight: bold;color: red">!IMPORTANT! merci de ne pas changer %LOCN au sein de l'URL, il sera complété dynamiquement.</font>}} </span>
+                                            style="font-style: italic; font-weight: bold;color: red">!IMPORTANT! merci de ne pas changer %LOCN au sein de l'URL, il sera complété dynamiquement.</font> Vous pouvez remplacer votre IP/DOMAIN WAN (myUrlJeedom.com) par votre IP LAN si nécessaire.}} </span>
                             </div>
                         </div>
                     </fieldset>

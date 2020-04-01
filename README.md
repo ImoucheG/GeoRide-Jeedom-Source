@@ -21,7 +21,7 @@ Step 3: Enable the GeoRide plugin.
 
 ### Prerequisites
 
-Jeedom 3.2
+Jeedom 3.2 or 4
 
 ### Installing
 
@@ -38,6 +38,8 @@ Uncheck/check the cycle (cron) of refresh for your informations on trackers.
 
 After get and fill your authentication key you can save your configuration.
 
+Enabled one or many CRON in your plugin for automatic get information from your tracker.
+
 **! IMPORTANT ! If you change the authentication key you must refresh entierely your page (F5).**
 
 Now, you can return to home page of GeoRide and add a equipment (tracker).
@@ -47,6 +49,8 @@ Now, you can return to home page of GeoRide and add a equipment (tracker).
 
 For her configuration, you must enable and set her tracker id, you can get all tracker of your account with the button below, click on
 the tracker that you need and save it.
+
+If necessary you can change your wan domain/ip by the local alternative.
 
 For use GeoLoc plugin with GeoRide you can specified your link in the field, he allow to update the location about your tracker. If you
 do not use GeoLock, do not fill this field.
@@ -65,15 +69,14 @@ do not use GeoLock, do not fill this field.
 
 ## Version
 
-1.0
+1.0.3
 
 ## Authors
 
 * ImoucheG - Initial work - [GitHub](https://github.com/ImoucheG)
 
 ## License
-The MIT License (MIT)
---
+
 
 Copyright © 2019-present, ImoucheG
 
