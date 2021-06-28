@@ -168,7 +168,10 @@ class georide extends eqLogic {
         $this->checkAndUpdateCmd('speed', $eqTracker->speed);
         $this->checkAndUpdateCmd('moving', $eqTracker->moving);
         $this->checkAndUpdateCmd('online', $eqTracker->status);
-
+        $this->checkAndUpdateCmd('isSecondGen', $eqTracker->isSecondGen);
+        $this->checkAndUpdateCmd('externalBatteryVoltage', $eqTracker->externalBatteryVoltage);
+        $this->checkAndUpdateCmd('internalBatteryVoltage', $eqTracker->internalBatteryVoltage);
+	    
         $geoLocUrl = $this->getConfiguration("geolocUrl");
         if (strlen($geoLocUrl) > 10) {
             $geoLocUrl = str_replace('%LOCN', $eqTracker->latitude . ',' . $eqTracker->longitude, $geoLocUrl);
@@ -387,6 +390,45 @@ class georide extends eqLogic {
         $online->setDisplay("showNameOndashboard", 0);
         $online->setSubType('string');
         $online->save();
+
+	$isSecondGen = $this->getCmd(null, 'isSecondGen');
+        if (!is_object($isSecondGen)) {
+            $isSecondGen = new georideCmd();
+            $isSecondGen->setName(__('GeoRide 3', __FILE__));
+        }
+        $isSecondGen->setLogicalId('isSecondGen');
+        $isSecondGen->setEqLogic_id($this->getId());
+        $isSecondGen->setType('info');
+        $isSecondGen->setTemplate('dashboard', 'georide');
+        $isSecondGen->setDisplay("showNameOndashboard", 0);
+        $isSecondGen->setSubType('numeric');
+        $isSecondGen->save();
+
+	$externalBatteryVoltage = $this->getCmd(null, 'externalBatteryVoltage');
+        if (!is_object($externalBatteryVoltage)) {
+            $externalBatteryVoltage = new georideCmd();
+            $externalBatteryVoltage->setName(__('External battery voltage', __FILE__));
+        }
+        $externalBatteryVoltage->setLogicalId('externalBatteryVoltage');
+        $externalBatteryVoltage->setEqLogic_id($this->getId());
+        $externalBatteryVoltage->setType('info');
+        $externalBatteryVoltage->setTemplate('dashboard', 'georide');
+        $externalBatteryVoltage->setDisplay("showNameOndashboard", 0);
+        $externalBatteryVoltage->setSubType('numeric');
+        $externalBatteryVoltage->save();
+
+	$internalBatteryVoltage = $this->getCmd(null, 'internalBatteryVoltage');
+        if (!is_object($internalBatteryVoltage)) {
+            $internalBatteryVoltage = new georideCmd();
+            $internalBatteryVoltage->setName(__('Internal battery voltage', __FILE__));
+        }
+        $internalBatteryVoltage->setLogicalId('internalBatteryVoltage');
+        $internalBatteryVoltage->setEqLogic_id($this->getId());
+        $internalBatteryVoltage->setType('info');
+        $internalBatteryVoltage->setTemplate('dashboard', 'georide');
+        $internalBatteryVoltage->setDisplay("showNameOndashboard", 0);
+        $internalBatteryVoltage->setSubType('numeric');
+        $internalBatteryVoltage->save();
 
         $locationLongitude = $this->getCmd(null, 'locationLongitude');
         if (!is_object($locationLongitude)) {
