@@ -69,7 +69,7 @@ do not use GeoLock, do not fill this field.
 
 ## Version
 
-1.0.4
+1.1.0
 
 ## Authors
 
