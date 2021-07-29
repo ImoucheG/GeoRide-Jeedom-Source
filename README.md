@@ -54,6 +54,9 @@ If necessary you can change your wan domain/ip by the local alternative.
 
 For use GeoLoc plugin with GeoRide you can specified your link in the field, he allow to update the location about your tracker. If you
 do not use GeoLock, do not fill this field.
+## Note
+
+ ! The lock and unlock command are not available on GeoRide V3. !
 
 ## Demo
 
