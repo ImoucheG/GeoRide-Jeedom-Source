@@ -144,6 +144,10 @@ class georide extends eqLogic {
         );
         $context = stream_context_create($opts);
         $result = file_get_contents('https://api.georide.fr/user/trackers', false, $context);
+        // Debug
+        //log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$result::'$result, __FILE__));
+        log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$result::'. $result, __FILE__));
+
         $jsonResult = json_decode($result);
         $eqTracker = NULL;
         foreach ($jsonResult as &$tracker) {
@@ -152,6 +156,8 @@ class georide extends eqLogic {
                 break;
             }
         }
+	    // Debug
+      	log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$eqTracker::Data tracker id "'. $trackerId .'" reçue : ' . json_encode($eqTracker), __FILE__));
         $this->checkAndUpdateCmd('lockedStatus', $eqTracker->isLocked);
         $this->checkAndUpdateCmd('locationLongitude', $eqTracker->longitude);
         $this->checkAndUpdateCmd('locationLatitude', $eqTracker->latitude);
@@ -591,4 +597,3 @@ class georideCmd extends cmd {
         }
     }
 }
-
