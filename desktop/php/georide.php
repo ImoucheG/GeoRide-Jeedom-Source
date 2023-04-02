@@ -119,7 +119,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </button>
                                 <label class="col-sm-4 control-label">{{GeoLoc URL}}</label>
                                 <span class="col-lg-12 italic" style="font-style: italic;">{{GeoLoc est un plug-in Jeedom (<a
-                                            href='https://jeedom.github.io/plugin-geoloc/fr_FR/'>https://jeedom.github.io/plugin-geoloc/fr_FR/</a>).
+                                            href='https://jeedom.github.io/plugin-geoloc/fr_FR/' target='_blank'>https://jeedom.github.io/plugin-geoloc/fr_FR/</a>).
             Si vous souhaitez mettre à jour vos coordonnées Jeedom, merci de remplir le champ suivant sinon vous pouvez le laisser vide pour désactiver la fonction.}}</span>
                                 <input id="GeoLocUrl" type="text" class="eqLogicAttr form-control" data-l1key="configuration"
                                        data-l2key="geolocUrl"
