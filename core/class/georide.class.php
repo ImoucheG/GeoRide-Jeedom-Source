@@ -38,6 +38,7 @@ class georide extends eqLogic {
             }
         }
     }
+
     /*
      * Executed every 5 minutes
      */
@@ -57,6 +58,7 @@ class georide extends eqLogic {
             }
         }
     }
+
     /*
      * Executed every 10 minutes
      */
@@ -76,6 +78,7 @@ class georide extends eqLogic {
             }
         }
     }
+
     /*
      * Executed every 15 minutes
      */
@@ -115,6 +118,7 @@ class georide extends eqLogic {
             }
         }
     }
+
     public static function cronHourly($_eqLogic_id = null) {
         if ($_eqLogic_id == null) {
             $eqLogics = self::byType('georide', true);
@@ -142,8 +146,10 @@ class georide extends eqLogic {
                 'header' => 'Authorization: Bearer ' . config::byKey('APIToken', 'georide')
             )
         );
+	
         $context = stream_context_create($opts);
         $result = file_get_contents('https://api.georide.fr/user/trackers', false, $context);
+	
         // Debug
         //log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$result::'$result, __FILE__));
         log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$result::'. $result, __FILE__));
@@ -156,8 +162,10 @@ class georide extends eqLogic {
                 break;
             }
         }
-	    // Debug
+	    
+	// Debug
       	log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$eqTracker::Data tracker id "'. $trackerId .'" reçue : ' . json_encode($eqTracker), __FILE__));
+	
         $this->checkAndUpdateCmd('lockedStatus', $eqTracker->isLocked);
         $this->checkAndUpdateCmd('locationLongitude', $eqTracker->longitude);
         $this->checkAndUpdateCmd('locationLatitude', $eqTracker->latitude);
@@ -486,7 +494,6 @@ class georide extends eqLogic {
         $refresh->setSubType('other');
         $refresh->save();
 
-
         $unlock = $this->getCmd(null, 'unlock');
         if (!is_object($unlock)) {
             $unlock = new georideCmd();
@@ -561,8 +568,10 @@ class georide extends eqLogic {
         foreach ($this->getCmd('action') as $cmd) {
             $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
         }
+
         return template_replace($replace, getTemplate('core', $version, 'georide', 'georide'));
     }
+
     public function preUpdate(){}
 
     public function postUpdate(){
