@@ -136,7 +136,7 @@ class georide extends eqLogic {
         }
     }
 
-    /* Get informations of tracker called by refresh in cron and command*/
+    /* Get informations of tracker called by refresh in cron and command */
     public function getInformations() {
         $trackerId = $this->getConfiguration("trackerId");
         // Locked status
@@ -202,7 +202,7 @@ class georide extends eqLogic {
         $this->refreshWidget();
     }
 
-    /* Unlock the tracker*/
+    /* Unlock the tracker */
     public function unlockTracker() {
         $trackerId = $this->getConfiguration("trackerId");
         $ch = curl_init();
@@ -215,7 +215,7 @@ class georide extends eqLogic {
         $this->getInformations();
     }
 
-    /* Lock the tracker*/
+    /* Lock the tracker */
     public function lockTracker() {
         $trackerId = $this->getConfiguration("trackerId");
         $ch = curl_init();
