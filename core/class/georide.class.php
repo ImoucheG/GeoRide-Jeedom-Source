@@ -38,6 +38,7 @@ class georide extends eqLogic {
             }
         }
     }
+
     /*
      * Executed every 5 minutes
      */
@@ -57,6 +58,7 @@ class georide extends eqLogic {
             }
         }
     }
+
     /*
      * Executed every 10 minutes
      */
@@ -76,6 +78,7 @@ class georide extends eqLogic {
             }
         }
     }
+
     /*
      * Executed every 15 minutes
      */
@@ -115,6 +118,7 @@ class georide extends eqLogic {
             }
         }
     }
+
     public static function cronHourly($_eqLogic_id = null) {
         if ($_eqLogic_id == null) {
             $eqLogics = self::byType('georide', true);
@@ -132,7 +136,7 @@ class georide extends eqLogic {
         }
     }
 
-    /* Get informations of tracker called by refresh in cron and command*/
+    /* Get informations of tracker called by refresh in cron and command */
     public function getInformations() {
         $trackerId = $this->getConfiguration("trackerId");
         // Locked status
@@ -142,11 +146,17 @@ class georide extends eqLogic {
                 'header' => 'Authorization: Bearer ' . config::byKey('APIToken', 'georide')
             )
         );
+
         $context = stream_context_create($opts);
         $result = file_get_contents('https://api.georide.fr/user/trackers', false, $context);
-        // Debug
-        //log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$result::'$result, __FILE__));
-        log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$result::'. $result, __FILE__));
+
+	if (empty($result)) {
+            log::add(__CLASS__, 'error', 'Le token d\'authentification n\'est plus valide, il faut renouveler le token');
+            return false;
+        } else {
+            // Debug
+            log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . '$result::'. print_r($result, true));
+        }
 
         $jsonResult = json_decode($result);
         $eqTracker = NULL;
@@ -156,8 +166,10 @@ class georide extends eqLogic {
                 break;
             }
         }
-	    // Debug
+
+	// Debug
       	log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$eqTracker::Data tracker id "'. $trackerId .'" reçue : ' . json_encode($eqTracker), __FILE__));
+
         $this->checkAndUpdateCmd('lockedStatus', $eqTracker->isLocked);
         $this->checkAndUpdateCmd('locationLongitude', $eqTracker->longitude);
         $this->checkAndUpdateCmd('locationLatitude', $eqTracker->latitude);
@@ -177,7 +189,7 @@ class georide extends eqLogic {
         $this->checkAndUpdateCmd('isSecondGen', $eqTracker->isSecondGen);
         $this->checkAndUpdateCmd('externalBatteryVoltage', $eqTracker->externalBatteryVoltage);
         $this->checkAndUpdateCmd('internalBatteryVoltage', $eqTracker->internalBatteryVoltage);
-	    
+
         $geoLocUrl = $this->getConfiguration("geolocUrl");
         if (strlen($geoLocUrl) > 10) {
             $geoLocUrl = str_replace('%LOCN', $eqTracker->latitude . ',' . $eqTracker->longitude, $geoLocUrl);
@@ -194,7 +206,7 @@ class georide extends eqLogic {
         $this->refreshWidget();
     }
 
-    /* Unlock the tracker*/
+    /* Unlock the tracker */
     public function unlockTracker() {
         $trackerId = $this->getConfiguration("trackerId");
         $ch = curl_init();
@@ -207,7 +219,7 @@ class georide extends eqLogic {
         $this->getInformations();
     }
 
-    /* Lock the tracker*/
+    /* Lock the tracker */
     public function lockTracker() {
         $trackerId = $this->getConfiguration("trackerId");
         $ch = curl_init();
@@ -486,7 +498,6 @@ class georide extends eqLogic {
         $refresh->setSubType('other');
         $refresh->save();
 
-
         $unlock = $this->getCmd(null, 'unlock');
         if (!is_object($unlock)) {
             $unlock = new georideCmd();
@@ -561,8 +572,10 @@ class georide extends eqLogic {
         foreach ($this->getCmd('action') as $cmd) {
             $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
         }
+
         return template_replace($replace, getTemplate('core', $version, 'georide', 'georide'));
     }
+
     public function preUpdate(){}
 
     public function postUpdate(){
