@@ -111,8 +111,6 @@ function getAPIKey(event) {
     },
     success: function (data) {
       document.getElementById('APIToken').value = data.authToken;
-      document.getElementById('EmailGeoRide').value = null;
-      document.getElementById('PasswordGeoRide').value = null;
     }
   });
 }

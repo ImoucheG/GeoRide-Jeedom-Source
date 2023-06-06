@@ -31,15 +31,15 @@ if (!isConnect()) {
                 <input id="APIToken" class="configKey form-control" data-l1key="APIToken"/>
                 <span style="color: red; font-style: italic;">{{Après la sauvegarde, merci de rafraichir entièrement votre page à l'aide d'un F5}}</span>
             </div>
-            <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-xs-12 form">
                 <h3>{{Récupérer l'API Key}}</h3>
                 <span class="col-lg-12 col-md-12 col-xs-12" style="font-style: italic;"> {{Les données saisies ne sont pas sauvegardées et sont utilisées que pour récupérer l'API Key}}</span>
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="col-lg-5 col-md-5 col-xs-5">
-                        <input id="EmailGeoRide" type="email" class="form-control" placeholder="{{Email}}"/>
+                        <input id="EmailGeoRide" type="email" data-l1key="EmailGeoRide" class="configKey form-control" placeholder="{{Email}}"/>
                     </div>
                     <div class="col-lg-5 col-md-5 col-xs-5">
-                        <input id="PasswordGeoRide" type="password" class="form-control" placeholder="{{Mot de passe}}"/>
+                        <input id="PasswordGeoRide" type="password" data-l1key="PasswordGeoRide" class="configKey form-control" placeholder="{{Mot de passe}}"/>
                     </div>
                     <div class="col-lg-2 col-md-2 col-xs-2">
                         <button type="button" class="btn btn-info" onclick="getAPIKey(event)">{{Récupérer}}</button>
