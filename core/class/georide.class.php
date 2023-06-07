@@ -157,7 +157,6 @@ class georide extends eqLogic
 
         $context = stream_context_create($opts);
         $result = file_get_contents('https://api.georide.fr/user/trackers', false, $context);
-
         if (empty($result)) {
             log::add(__CLASS__, 'error', 'Le token d\'authentification n\'est plus valide, il faut renouveler le token');
             return false;
@@ -236,6 +235,7 @@ class georide extends eqLogic
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . config::byKey('APIToken', 'georide')));
         $data = curl_exec($ch);
         curl_close($ch);
+        log::add(__CLASS__, 'error', 'TEST: ' . $data);
         // TODO: set response to replace token in config::byKey('APIToken', 'georide')
         // Warning: after many test georide api return "TooManyRequests" !
         // log::add(__CLASS__, 'error', 'TEST: ' . $data);
