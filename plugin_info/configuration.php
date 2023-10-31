@@ -48,6 +48,3 @@ if (!isConnect()) {
         </div>
     </fieldset>
 </form>
-
-
-<?php include_file('desktop', 'georide', 'js', 'georide'); ?>
