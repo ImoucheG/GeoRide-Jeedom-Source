@@ -18,6 +18,8 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
+const API_URL = 'https://api.georide.fr';
+
 class georide extends eqLogic {
     /*
      * Executed every minute
@@ -136,26 +138,59 @@ class georide extends eqLogic {
         }
     }
 
+    /* Get API Key from GeoRide */
+    public function getAPIKey() {      
+      	$email = config::byKey('emailGeoRide', 'georide');
+      	$password = config::byKey('passwordGeoRide', 'georide');
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, API_URL . '/user/login');
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, 'email=' . $email . '&password=' . $password);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        
+        $jsonResult = json_decode($result);
+        
+        // Debug
+        log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . '$result:: '. print_r($result, true));
+
+        if (!empty($jsonResult->error)) {
+            log::add(__CLASS__, 'error', 'Error on renew API key : ' . print_r($jsonResult->error, true));
+            return false;
+        }
+      
+      	$newAuthToken = $jsonResult->authToken;
+        // Debug
+        log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . '$newAuthToken:: '. print_r($newAuthToken, true));
+
+      	// Set API key in configuration
+      	config::save('APIToken', $newAuthToken, 'georide');
+    }
+
     /* Get informations of tracker called by refresh in cron and command */
     public function getInformations() {
         $trackerId = $this->getConfiguration("trackerId");
-        // Locked status
-        $opts = array('http' =>
-            array(
-                'method' => 'GET',
-                'header' => 'Authorization: Bearer ' . config::byKey('APIToken', 'georide')
-            )
-        );
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, API_URL . '/user/trackers');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . config::byKey('APIToken', 'georide')));
+        $result = curl_exec($ch);
+        curl_close($ch);
 
-        $context = stream_context_create($opts);
-        $result = file_get_contents('https://api.georide.fr/user/trackers', false, $context);
+        $jsonResult = json_decode($result);
 
-	if (empty($result)) {
-            log::add(__CLASS__, 'error', 'Le token d\'authentification n\'est plus valide, il faut renouveler le token');
+        // Debug
+        log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . '$result:: '. print_r($result, true));
+
+        if (!empty($jsonResult->error)) {
+            log::add(__CLASS__, 'error', 'Error on get user\'s trackers : ' . print_r($jsonResult->error, true));
+
+            // Bearer token is not valid anymore, we need to renew it
+            $this->getAPIKey();
+
             return false;
-        } else {
-            // Debug
-            log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . '$result::'. print_r($result, true));
         }
 
         $jsonResult = json_decode($result);
@@ -167,7 +202,7 @@ class georide extends eqLogic {
             }
         }
 
-	// Debug
+	    // Debug
       	log::add(__CLASS__, 'debug', '[' . __FUNCTION__ . '] ' . __('$eqTracker::Data tracker id "'. $trackerId .'" reçue : ' . json_encode($eqTracker), __FILE__));
 
         $this->checkAndUpdateCmd('lockedStatus', $eqTracker->isLocked);
