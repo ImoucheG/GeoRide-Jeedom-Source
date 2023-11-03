@@ -28,18 +28,17 @@ if (!isConnect()) {
         <div class="form-group">
             <label class="col-lg-4 control-label">{{Authentification API Key}}</label>
             <div class="col-lg-2">
-                <input id="APIToken" class="configKey form-control" data-l1key="APIToken"/>
+                <input class="configKey form-control" data-l1key="APIToken" id="APIToken" />
                 <span style="color: red; font-style: italic;">{{Après la sauvegarde, merci de rafraichir entièrement votre page à l'aide d'un F5}}</span>
             </div>
             <div class="col-lg-12 col-md-12 col-xs-12">
-                <h3>{{Récupérer l'API Key}}</h3>
-                <span class="col-lg-12 col-md-12 col-xs-12" style="font-style: italic;"> {{Les données saisies ne sont pas sauvegardées et sont utilisées que pour récupérer l'API Key}}</span>
+                <h3>{{Récupérer la clé API}}</h3>
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="col-lg-5 col-md-5 col-xs-5">
-                        <input id="EmailGeoRide" type="email" class="form-control" placeholder="{{Email}}"/>
+                        <input class="configKey form-control" data-l1key="emailGeoride" id="EmailGeoRide" type="email" placeholder="{{Email}}"/>
                     </div>
                     <div class="col-lg-5 col-md-5 col-xs-5">
-                        <input id="PasswordGeoRide" type="password" class="form-control" placeholder="{{Mot de passe}}"/>
+                        <input class="configKey form-control" data-l1key="passwordGeoride" id="PasswordGeoRide" type="password" placeholder="{{Mot de passe}}"/>
                     </div>
                     <div class="col-lg-2 col-md-2 col-xs-2">
                         <button type="button" class="btn btn-info" onclick="getAPIKey(event)">{{Récupérer}}</button>
@@ -49,6 +48,3 @@ if (!isConnect()) {
         </div>
     </fieldset>
 </form>
-
-
-<?php include_file('desktop', 'georide', 'js', 'georide'); ?>
